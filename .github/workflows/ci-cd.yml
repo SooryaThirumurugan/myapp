@@ -19,23 +19,23 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
 
           script: |
-            if [ ! -d "myapp-clean" ]; then
-              git clone https://github.com/USERNAME/myapp-clean.git
+            if [ ! -d "myapp" ]; then
+            git clone https://github.com/SooryaThirumurugan/myapp.git
             fi
 
-            cd myapp-clean
+            cd myapp
 
-            git config --global --add safe.directory /home/ubuntu/myapp-clean
+            git config --global --add safe.directory /home/ubuntu/myapp
 
-            sudo chown -R ubuntu:ubuntu /home/ubuntu/myapp-clean
+              sudo chown -R ubuntu:ubuntu /home/ubuntu/myapp
 
             git fetch --all
             git reset --hard origin/main
-
-            docker stop myapp || true
-            docker rm myapp || true
-            docker rmi myapp || true
-
-            docker build -t myapp .
-
-            docker run -d -p 80:80 --restart always --name myapp myapp
+          
+                docker stop myapp || true
+                docker rm myapp || true
+                docker rmi myapp || true
+              
+                docker build -t myapp .
+              
+                docker run -d -p 80:80 --restart always --name myapp myapp
